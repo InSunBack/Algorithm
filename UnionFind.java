@@ -31,9 +31,9 @@ class UnionFind {
         if(ni == nj) return;
         
         if(ni < nj) {
-            parent[j] = i;
+            parent[nj] = ni;
         } else {
-            parent[i] = j;
+            parent[ni] = nj;
         }
     }
 
@@ -51,8 +51,12 @@ class UnionFind {
     }
 
     static int find(int i) {
-        if(parent[i] == i) return parent[i];
-        else return find(parent[i]);
+        if(parent[i] == i) {
+            return parent[i];
+        } else {
+            parent[i] = find(parent[i]);
+            return parent[i];
+        }
     }
 
     // collapsing find
